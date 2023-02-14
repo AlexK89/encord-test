@@ -4,9 +4,8 @@ import { Cell, Column, Row, TableProps } from './types';
 
 export const Table: FC<TableProps> = ({ columns, rows, rowsPerPage = 5 }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const rowsQuantity = rows.length;
   const isPrevDisabled = currentPage === 1;
-  const isNextDisabled = currentPage === Math.ceil(rowsQuantity / rowsPerPage);
+  const isNextDisabled = currentPage * rowsPerPage >= rows.length;
 
   const pageHandler = (direction: number) => () =>
     setCurrentPage(currentPage + direction);
