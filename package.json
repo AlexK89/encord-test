@@ -1,6 +1,6 @@
 {
-  "name": "reactjs-vite-template",
-  "description": "React-vite template.",
+  "name": "encord-test",
+  "description": "Test exercise for encord",
   "version": "0.1.0",
   "private": true,
   "author": {
@@ -12,7 +12,7 @@
     "email": "noreply@gmail.com"
   },
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "test": "jest",
@@ -20,8 +20,12 @@
     "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.9",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
