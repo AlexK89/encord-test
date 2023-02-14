@@ -1,7 +1,8 @@
 export enum PageURL {
-  IMAGES_LISTING = '/',
+  ROOT = '/',
   PREDISCTION_LISTING = '/predictions',
   PREDICTION_DETAILS = '/predictions/:id',
+  NOT_FOUND = '/404',
 }
 
 export const getPageURL = (

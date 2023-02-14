@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from 'components/common';
+import { ImagesTable } from './ImagesTable';
 
 export const ImageListingPage = () => {
   const fileUploadHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -10,7 +11,10 @@ export const ImageListingPage = () => {
 
         return {
           ...acc,
-          [fileId]: file,
+          [fileId]: {
+            file,
+            isProcessed: false,
+          },
         };
       }, {});
 
@@ -20,8 +24,8 @@ export const ImageListingPage = () => {
 
   return (
     <div className={'p-4'}>
-      <div className={'flex justify-between'}>
-        <h1 className={'font-semibold'}>Image Listing Page</h1>
+      <div className={'flex items-center'}>
+        <h1 className={'pr-4 font-semibold'}>Add more images</h1>
 
         <Button variant="contained" component={'label'}>
           Upload
@@ -34,6 +38,7 @@ export const ImageListingPage = () => {
           />
         </Button>
       </div>
+      <ImagesTable />
     </div>
   );
 };

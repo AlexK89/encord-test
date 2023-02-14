@@ -4,7 +4,7 @@ import { IHeaderMenuItem } from './types';
 export const headerTabsOptions: IHeaderMenuItem[] = [
   {
     title: 'Images',
-    link: PageURL.IMAGES_LISTING,
+    link: PageURL.ROOT,
   },
   {
     title: 'Predictions',
