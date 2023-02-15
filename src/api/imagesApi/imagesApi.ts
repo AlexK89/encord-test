@@ -8,7 +8,7 @@ export const imagesApi = {
       const response = await fetch(`${API_URL}/predict`);
       const parsedResponse = response.json();
 
-      return parsedResponse;
+      return { ...parsedResponse, createdAt: new Date().toISOString() };
     } catch (error) {
       console.error('Error getting prediction');
       return null;
