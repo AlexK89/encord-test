@@ -2,13 +2,16 @@ import { imagesApi } from 'api/imagesApi/imagesApi';
 import { ImagesContext } from 'App';
 import { Button, Modal, TextField } from 'components';
 import { useContext, useState } from 'react';
+import { ImagesContextType } from 'types';
 import { ImageTableModalProps } from './types';
 
 export const ImageTableModal: React.FC<ImageTableModalProps> = ({
   modalState,
   onClose,
 }) => {
-  const { images, updateImage } = useContext(ImagesContext);
+  const { images, updateImage } = useContext(
+    ImagesContext
+  ) as ImagesContextType;
   const selectedImage = images.find((image) => image.id === modalState.imageId);
   const [isServerError, setIsServerError] = useState(false);
 
@@ -17,12 +20,12 @@ export const ImageTableModal: React.FC<ImageTableModalProps> = ({
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    const prediction = await imagesApi.getPrediction();
+    const predictionsData = await imagesApi.getPredictions();
 
-    if (prediction) {
+    if (predictionsData) {
       updateImage(modalState.imageId, {
         ...data,
-        prediction,
+        predictionsData,
         isPredicted: true,
       });
       return onClose();

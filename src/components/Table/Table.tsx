@@ -42,7 +42,7 @@ export const Table: FC<TableProps> = ({ columns, rows, rowsPerPage = 5 }) => {
                 {row.cells.map((cell: Cell, index: number) => (
                   <td
                     key={`${row.id}-${index}`}
-                    className={'px-4 py-2 last:text-center'}
+                    className={'px-4 py-2 text-start last:text-center'}
                   >
                     {cell}
                   </td>

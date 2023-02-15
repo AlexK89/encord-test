@@ -3,10 +3,12 @@ import { Button } from 'components';
 import { ImagesTable } from './ImagesTable';
 import { ImagesContext } from 'App';
 import { useContext } from 'react';
-import { ImageType } from 'types';
+import { ImagesContextType, ImageType } from 'types';
 
 export const ImageListingPage = () => {
-  const { images, addNewImages } = useContext(ImagesContext);
+  const { images, addNewImages } = useContext(
+    ImagesContext
+  ) as ImagesContextType;
 
   const fileUploadHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;

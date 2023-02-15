@@ -1,12 +1,8 @@
 import { createContext, useState } from 'react';
 import { Router } from 'router';
-import { ImageType } from 'types';
+import { ImagesContextType, ImageType } from 'types';
 
-export const ImagesContext = createContext({
-  images: [] as ImageType[],
-  addNewImages: (newImages: ImageType[]) => {},
-  updateImage: (id: string, data: Partial<ImageType>) => {},
-});
+export const ImagesContext = createContext<ImagesContextType | null>(null);
 
 function App() {
   const [images, setImages] = useState<ImageType[]>([]);

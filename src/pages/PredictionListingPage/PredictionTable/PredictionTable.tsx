@@ -21,8 +21,8 @@ export const PredictionTable: React.FC<PredictionTableProps> = ({
       cells: [
         image.title,
         image.description,
-        image.prediction?.createdAt &&
-          dayJs(image.prediction.createdAt).format('DD/MM/YYYY HH:mm'),
+        image.predictionsData?.createdAt &&
+          dayJs(image.predictionsData.createdAt).format('DD/MM/YYYY HH:mm'),
         <Link
           key={`cta-${image.id}`}
           to={getPageURL(PageURL.PREDICTION_DETAILS, { id: image.id })}
