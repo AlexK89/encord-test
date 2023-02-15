@@ -14,7 +14,7 @@ export const PredictionLayer: React.FC<PredictionLayerProps> = ({
   });
 
   const { bbox, label, score } = prediction;
-  const formattedScore = parseFloat(score).toFixed(2);
+  const formattedScore = (parseFloat(score) * 100).toFixed(2);
   const { x1, x2, y1, y2 } = bbox;
 
   useEffect(() => {
