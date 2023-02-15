@@ -38,9 +38,12 @@ export const Table: FC<TableProps> = ({ columns, rows, rowsPerPage = 5 }) => {
           </thead>
           <tbody>
             {rowsToRender.map((row: Row) => (
-              <tr key={row.id} className={'border-b py-2 last:border-0'}>
+              <tr key={row.id} className={'border-b last:border-0'}>
                 {row.cells.map((cell: Cell, index: number) => (
-                  <td key={`${row.id}-${index}`} className={'px-4'}>
+                  <td
+                    key={`${row.id}-${index}`}
+                    className={'px-4 py-2 last:text-center'}
+                  >
                     {cell}
                   </td>
                 ))}

@@ -1,6 +1,19 @@
-import { Table } from 'components/common';
+import { useContext, useState } from 'react';
+import dayJs from 'dayjs';
+import { ImagesContext } from 'App';
+import { Button, Table } from 'components';
+import { ImageType } from 'types';
+
+import { ImageTableModal } from './ImageTableModal';
+import { ModalState } from './types';
 
 export const ImagesTable = () => {
+  const { images } = useContext(ImagesContext);
+  const [modalState, setModalState] = useState<ModalState>({
+    isOpen: false,
+    imageId: '',
+  });
+
   const columns = [
     { id: 'fileName', label: 'File Name' },
     { id: 'fileSize', label: 'Size' },
@@ -8,9 +21,38 @@ export const ImagesTable = () => {
     { id: 'cta', label: '' },
   ];
 
+  const modalStateHandler =
+    (newState: boolean, imageId = '') =>
+    () => {
+      setModalState({ isOpen: newState, imageId });
+    };
+
+  const formattedImageRows = images.map((image: ImageType) => {
+    return {
+      id: image.id,
+      cells: [
+        image.file.name,
+        (image.file.size / 1000000).toFixed(2) + ' MB',
+        dayJs(image.file.lastModified).format('DD/MM/YYYY HH:mm'),
+        <Button
+          key={`cta-${image.id}`}
+          variant="contained"
+          disabled={image.isPredicted}
+          onClick={modalStateHandler(true, image.id)}
+        >
+          {image.isPredicted ? 'Predicted' : 'Predict'}
+        </Button>,
+      ],
+    };
+  });
+
   return (
     <div className={'mt-8'}>
-      <Table rows={[]} columns={columns} />
+      <ImageTableModal
+        modalState={modalState}
+        onClose={modalStateHandler(false)}
+      />
+      <Table rows={formattedImageRows} columns={columns} />
     </div>
   );
 };

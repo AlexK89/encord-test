@@ -1,24 +1,30 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Button } from 'components/common';
+import { Button } from 'components';
 import { ImagesTable } from './ImagesTable';
+import { ImagesContext } from 'App';
+import { useContext } from 'react';
+import { ImageType } from 'types';
 
 export const ImageListingPage = () => {
+  const { addNewImages } = useContext(ImagesContext);
+
   const fileUploadHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files) {
-      const newImages = Array.from(files).reduce((acc, file) => {
+      const newImages = Array.from(files).reduce((acc: ImageType[], file) => {
         const fileId = uuidv4();
 
-        return {
+        return [
           ...acc,
-          [fileId]: {
+          {
+            id: fileId,
             file,
-            isProcessed: false,
+            isPredicted: false,
           },
-        };
-      }, {});
+        ];
+      }, []);
 
-      return newImages;
+      addNewImages(newImages);
     }
   };
 

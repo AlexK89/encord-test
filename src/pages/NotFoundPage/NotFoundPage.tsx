@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Button } from 'components/common';
+import { Button } from 'components';
 import { PageURL } from 'router/pageURL';
 
 export const NotFoundPage = () => (
