@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { ImageType } from 'types';
 
 export const ImageListingPage = () => {
-  const { addNewImages } = useContext(ImagesContext);
+  const { images, addNewImages } = useContext(ImagesContext);
 
   const fileUploadHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -44,7 +44,14 @@ export const ImageListingPage = () => {
           />
         </Button>
       </div>
-      <ImagesTable />
+
+      <div className={'mt-14 text-center'}>
+        {images.length ? (
+          <ImagesTable images={images} />
+        ) : (
+          'No predicted images yet'
+        )}
+      </div>
     </div>
   );
 };

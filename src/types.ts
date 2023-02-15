@@ -2,7 +2,7 @@ export type ImageType = {
   id: string;
   file: File;
   isPredicted: boolean;
-  prediction?: any[];
+  prediction?: Record<string, any>;
   title?: string;
   description?: string;
 };

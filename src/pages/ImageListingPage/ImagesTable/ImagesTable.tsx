@@ -1,13 +1,11 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import dayJs from 'dayjs';
-import { ImagesContext } from 'App';
 import { Button, Table } from 'components';
 import { ImageType } from 'types';
 import { ImageTableModal } from './ImageTableModal';
-import { ModalState } from './types';
+import { ImagesTableProps, ModalState } from './types';
 
-export const ImagesTable = () => {
-  const { images } = useContext(ImagesContext);
+export const ImagesTable: React.FC<ImagesTableProps> = ({ images }) => {
   const [modalState, setModalState] = useState<ModalState>({
     isOpen: false,
     imageId: '',
@@ -46,12 +44,12 @@ export const ImagesTable = () => {
   });
 
   return (
-    <div className={'mt-8'}>
+    <>
       <ImageTableModal
         modalState={modalState}
         onClose={modalStateHandler(false)}
       />
       <Table rows={formattedImageRows} columns={columns} />
-    </div>
+    </>
   );
 };
