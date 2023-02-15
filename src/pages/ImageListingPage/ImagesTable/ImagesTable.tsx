@@ -3,7 +3,6 @@ import dayJs from 'dayjs';
 import { ImagesContext } from 'App';
 import { Button, Table } from 'components';
 import { ImageType } from 'types';
-
 import { ImageTableModal } from './ImageTableModal';
 import { ModalState } from './types';
 

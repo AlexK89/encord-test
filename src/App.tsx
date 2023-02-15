@@ -5,7 +5,7 @@ import { ImageType } from 'types';
 export const ImagesContext = createContext({
   images: [] as ImageType[],
   addNewImages: (newImages: ImageType[]) => {},
-  updateImage: (id: string, data: Partial<ImageType>[]) => {},
+  updateImage: (id: string, data: Partial<ImageType>) => {},
 });
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
     setImages((prevImages) => [...prevImages, ...newImages]);
   };
 
-  const updateImage = (id: string, data: Partial<ImageType>[]) => {
+  const updateImage = (id: string, data: Partial<ImageType>) => {
     setImages((prevImages) =>
       prevImages.map((image) => {
         if (image.id === id) {
