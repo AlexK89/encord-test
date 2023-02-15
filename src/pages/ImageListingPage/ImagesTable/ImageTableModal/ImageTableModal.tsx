@@ -22,7 +22,10 @@ export const ImageTableModal: React.FC<ImageTableModalProps> = ({
     if (prediction) {
       updateImage(modalState.imageId, {
         ...data,
-        prediction,
+        prediction: {
+          ...prediction,
+          createdAt: new Date().toISOString(),
+        },
         isPredicted: true,
       });
       return onClose();
