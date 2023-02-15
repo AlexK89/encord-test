@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ImagesContext } from 'App';
 import { ImagesContextType, ImageType } from 'types';
 import { PredictionLayer } from './PredictionLayer';
 import { ImageDimensionsType } from './types';
+import { PageURL } from 'router/pageURL';
+import { Button } from 'components';
 
 export const PredictionDetailsPage = () => {
   const { images } = useContext(ImagesContext) as ImagesContextType;
@@ -35,9 +37,11 @@ export const PredictionDetailsPage = () => {
     }
   };
 
+  if (!selectedImage)
+    return <h3 className={'mt-4 text-center'}>Image not found</h3>;
+
   return (
-    <div className={'flex flex-col items-center'}>
-      <h1 className={'text-center'}>RecognisedImage</h1>
+    <div className={'mt-4 flex flex-col items-center'}>
       {selectedImage && (
         <div className={'relative w-3/5'}>
           <img
@@ -59,6 +63,9 @@ export const PredictionDetailsPage = () => {
           </>
         </div>
       )}
+      <Link to={PageURL.PREDISCTION_LISTING} className={'mt-4'}>
+        <Button>Back</Button>
+      </Link>
     </div>
   );
 };

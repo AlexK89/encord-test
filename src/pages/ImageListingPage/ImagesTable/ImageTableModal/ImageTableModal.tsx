@@ -2,6 +2,8 @@ import { imagesApi } from 'api/imagesApi/imagesApi';
 import { ImagesContext } from 'App';
 import { Button, Modal, TextField } from 'components';
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { PageURL } from 'router/pageURL';
 import { ImagesContextType } from 'types';
 import { ImageTableModalProps } from './types';
 
@@ -9,6 +11,7 @@ export const ImageTableModal: React.FC<ImageTableModalProps> = ({
   modalState,
   onClose,
 }) => {
+  const navigate = useNavigate();
   const { images, updateImage } = useContext(
     ImagesContext
   ) as ImagesContextType;
@@ -28,7 +31,7 @@ export const ImageTableModal: React.FC<ImageTableModalProps> = ({
         predictionsData,
         isPredicted: true,
       });
-      return onClose();
+      return navigate(PageURL.PREDISCTION_LISTING);
     }
 
     updateImage(modalState.imageId, { ...data });

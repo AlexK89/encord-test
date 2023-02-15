@@ -8,12 +8,14 @@ export const PredictionListingPage = () => {
   const predictedImages = images.filter((image) => image.isPredicted);
 
   return (
-    <div className={'mt-24 p-4 text-center'}>
-      {predictedImages.length ? (
-        <PredictionTable predictedImages={predictedImages} />
-      ) : (
-        'No predicted images yet'
-      )}
+    <div className={'flex justify-center'}>
+      <div className={'mt-24 flex max-w-4xl p-4'}>
+        {predictedImages.length ? (
+          <PredictionTable predictedImages={predictedImages} />
+        ) : (
+          <h3>No predicted images yet</h3>
+        )}
+      </div>
     </div>
   );
 };

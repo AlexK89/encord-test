@@ -31,7 +31,7 @@ export const ImageListingPage = () => {
   };
 
   return (
-    <div className={'p-4'}>
+    <div className={'flex flex-col items-center p-4'}>
       <div className={'flex items-center'}>
         <h1 className={'pr-4 font-semibold'}>Add more images</h1>
 
@@ -47,11 +47,11 @@ export const ImageListingPage = () => {
         </Button>
       </div>
 
-      <div className={'mt-14 text-center'}>
+      <div className={'mt-14 flex max-w-4xl justify-center'}>
         {images.length ? (
           <ImagesTable images={images} />
         ) : (
-          'No predicted images yet'
+          <h3>No images yet</h3>
         )}
       </div>
     </div>
