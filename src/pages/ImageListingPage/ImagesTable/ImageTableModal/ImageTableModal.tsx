@@ -1,6 +1,7 @@
 import { imagesApi } from 'api/imagesApi/imagesApi';
 import { ImagesContext } from 'App';
 import { Button, Modal, TextField } from 'components';
+import { LoadingButton } from 'components';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageURL } from 'router/pageURL';
@@ -17,9 +18,12 @@ export const ImageTableModal: React.FC<ImageTableModalProps> = ({
   ) as ImagesContextType;
   const selectedImage = images.find((image) => image.id === modalState.imageId);
   const [isServerError, setIsServerError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const formSubmitHandler = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    // if we use React query or other libs you can make it a a part of the call, or just build a custom hook
+    setIsLoading(true);
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
@@ -36,6 +40,7 @@ export const ImageTableModal: React.FC<ImageTableModalProps> = ({
 
     updateImage(modalState.imageId, { ...data });
     setIsServerError(true);
+    setIsLoading(false);
   };
 
   return (
@@ -76,9 +81,12 @@ export const ImageTableModal: React.FC<ImageTableModalProps> = ({
                 Something went wrong :(
               </p>
             )}
-            <Button variant="contained" type="submit">
+            <LoadingButton
+              buttonProps={{ type: 'submit', variant: 'contained' }}
+              isLoading={isLoading}
+            >
               Submit
-            </Button>
+            </LoadingButton>
           </div>
         </form>
       </>
